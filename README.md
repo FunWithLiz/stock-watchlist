@@ -15,7 +15,7 @@ For users who wants to keep track of their stocks.
 - Api link: https://docs.quandl.com/docs/in-depth-usage#section-get-time-series-data-and-metadata
 
 ## ERD
-![ERD]https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/ERD/ERD.png
+![https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/ERD/ERD.png]
 
 ## Wireframes
 ![Wireframe1]https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/wireframes/Wireframe_1.png
