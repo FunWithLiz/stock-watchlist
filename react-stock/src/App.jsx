@@ -3,9 +3,11 @@ import './App.css';
 import AllStocks from './components/AllStocks'
 import CreateWatchList from './components/CreateWatchList'
 import Header from './components/Header'
+import AllWatchlist from './components/AllWatchList'
 import {
   getAllStocks,
-  saveCategoryName
+  saveName,
+  fetchWatchlist
 } from './services/api'
 
 
@@ -18,10 +20,13 @@ class App extends Component {
     super(props);
     this.state = {
       currentView: 'Wiki Index',
+      name: [],
       stocks: null,
-      flag: false
+      flag: false,
+
     }
     this.determineWhichToRender = this.determineWhichToRender.bind(this);
+    this.createWatchList = this.createWatchList.bind(this);
   }
 
 
@@ -34,15 +39,29 @@ class App extends Component {
           flag: true
         })
       })
+
+
+    fetchWatchlist()
+    .then(data => {
+      this.setState({
+        name: data,
+      })
+    })
   }
 
+
+
+
+
   createWatchList(category) {
-    saveCategoryName(category)
+    saveName(category)
       .then(data => {
-        AllStocks();
+        fetchWatchlist()
+        .then(res => {
         this.setState({
-          currentView: 'Wiki Index',
-          category: data
+          currentView: 'Watch lists',
+          name: res
+        })
         });
       })
   }
@@ -63,6 +82,14 @@ class App extends Component {
           onSubmit={this.createWatchList}
           stocks={this.state.stocks} />;
         break;
+
+      case 'Watch lists':
+      return <AllWatchlist
+          name={this.state.name}
+      />
+      break;
+
+
     }
   }
 
@@ -76,7 +103,8 @@ class App extends Component {
   render() {
     const links = [
       'Wiki Index',
-      'Create WatchList'
+      'Create WatchList',
+      'Watch lists'
     ]
     if (this.state.flag) {
       return (

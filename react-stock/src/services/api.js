@@ -6,22 +6,26 @@ function getAllStocks(){
     .then(res => res.json())
 }
 
-function saveCategoryName(category){
+function saveName(name){
     const opts = {
         method: 'POST',
-        body: JSON.stringify(category),
+        body: JSON.stringify(name),
         headers:{
-            'Content-Tyoe': 'application/json'
+            'Content-Type': 'application/json'
         }
     };
-    return fetch(`${BASE_URL}/stocks`, opts)
-    .then(res => {
-        console.log(res)
-        return res.json()
-    })
+    return fetch(`${BASE_URL}/personal_watchlists`, opts)
+    .then(res => res.json())
+}
+
+
+function fetchWatchlist(){
+    return fetch(BASE_URL + '/personal_watchlists')
+    .then(res => res.json())
 }
 
 export {
     getAllStocks,
-    saveCategoryName
+    saveName,
+    fetchWatchlist
 }

@@ -5,7 +5,7 @@ class CreateWatchList extends Component {
         super(props);
 
         this.state = {
-            category_list_name: '',
+            name_list: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,8 +32,8 @@ render(){
                 <label> Name of Watch List:</label>
                 <input
                     type='text'
-                    name='category_list_name'
-                    value={this.state.category_list_name}
+                    name='name_list'
+                    value={this.state.name}
                     onChange={this.handleChange}
                     placeholder="Create new name"
                 ></input>
@@ -41,6 +41,8 @@ render(){
                 <input type="submit" value="Name this watch list"
                 ></input>
             </form>
+
+    
         </div>
     )
 }
