@@ -15,11 +15,11 @@ For users who wants to keep track of their stocks.
 - Api link: https://docs.quandl.com/docs/in-depth-usage#section-get-time-series-data-and-metadata
 
 ## ERD
-![ERD]()
+![ERD](https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/ERD/ERD.png)
 
 ## Wireframes
 ![Wireframe1](https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/wireframes/Wireframe_1.png)
-![Wireframe2](https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/wireframes/Wireframe_1.png)
+![Wireframe2](https://git.generalassemb.ly/elizabethfun/stock-watchlist/blob/master/wireframes/Wireframe_2.png)
 
 ## MVP
 Create a new category for your watchlist. Able to show all of the stocks to choose from along with viewing all of your stocks in your list. Able to update your list by editing the name of your category list and deleting the category entirely or deleting the stock from your category list.
