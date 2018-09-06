@@ -1,0 +1,2 @@
+module CategoryListsHelper
+end
