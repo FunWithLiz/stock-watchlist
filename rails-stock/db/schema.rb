@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2018_09_04_201931) do
 
   create_table "category_lists", force: :cascade do |t|
-    t.integer "stocks_id"
-    t.integer "personal_watchlists_id"
+    t.integer "stock_id"
+    t.integer "personal_watchlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["personal_watchlists_id"], name: "index_category_lists_on_personal_watchlists_id"
-    t.index ["stocks_id"], name: "index_category_lists_on_stocks_id"
+    t.index ["personal_watchlist_id"], name: "index_category_lists_on_personal_watchlist_id"
+    t.index ["stock_id"], name: "index_category_lists_on_stock_id"
   end
 
   create_table "personal_watchlists", force: :cascade do |t|

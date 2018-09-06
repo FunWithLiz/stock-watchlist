@@ -25,7 +25,7 @@ Stock.create(dataset_code: 'ADM', database_code: 'WIKI', frequency: 'Daily')
 
 PersonalWatchlist.create(name_list: 'Testing')
 
-CategoryList.create(stocks_id: 1, personal_watchlists_id: 1) 
+# CategoryList.create(stocks_id: 1, personal_watchlists_id: 1) 
 
 # asldshfsjdk
 # hello worlds
