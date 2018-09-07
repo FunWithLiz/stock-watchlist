@@ -5,4 +5,16 @@ class StocksController < ApplicationController
         render json: { stock: @stock }
     end
 
+    skip_before_action :verify_authenticity_token  
+
+
+    def create 
+        stock = Stock.find(params["stockId"])
+        personal_watchlist = PersonalWatchlist.find(params["personal_watchlist_id"])
+
+        personal_watchlist.stocks << stock
+        render json: { personal_watchlist: personal_watchlist.stocks }
+
+    end
+
 end

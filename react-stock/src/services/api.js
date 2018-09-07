@@ -53,11 +53,25 @@ function updateWatchList(watch, watchId){
     .then(res => res.json())
 }
 
+function addToWatchList(stockId, watchId){
+    const opts = {
+        method: 'POST',
+        body: JSON.stringify({stockId: stockId}),
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    }
+    return fetch(`${BASE_URL}/personal_watchlists/${watchId}/stocks`, opts)
+    .then(res => res.json())
+}
+
+
 export {
     getAllStocks,
     saveName,
     fetchWatchlist,
     fetchStockList,
     deleteTheWatchList,
-    updateWatchList
+    updateWatchList,
+    addToWatchList
 }

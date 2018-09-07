@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
 import 'bulma/css/bulma.css';
+import './App.css';
 import AllStocks from './components/AllStocks'
 import CreateWatchList from './components/CreateWatchList'
 import Header from './components/Header'
@@ -11,7 +11,8 @@ import {
   fetchWatchlist,
   fetchStockList,
   deleteTheWatchList,
-  updateWatchList
+  updateWatchList,
+  addToWatchList
 } from './services/api'
 import EditForm from './components/EditForm';
 
@@ -31,6 +32,7 @@ class App extends Component {
       list: '',
       idToEdit: '',
       value: '',
+      getWatchId: '',
     }
     this.determineWhichToRender = this.determineWhichToRender.bind(this);
     this.createWatchList = this.createWatchList.bind(this);
@@ -40,7 +42,7 @@ class App extends Component {
     this.setIdToEdit = this.setIdToEdit.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.handleSelectionSubmit = this.handleSelectionSubmit.bind(this);
-
+    this.addStockToWatchList = this.addStockToWatchList.bind(this);
   }
 
 
@@ -74,27 +76,15 @@ class App extends Component {
 
 
 
-  createWatchList(category) {
-    saveName(category)
-      .then(data => {
-        fetchWatchlist()
-        .then(res => {
-        this.setState({
-          currentView: 'Watch lists',
-          name: res
-        })
-        });
-      })
-  }
-
-
+  
+  
   setIdToEdit(id){
     this.setState({
       currentView: 'Edit Form',
       idToEdit: id,
     })
   }
-
+  
   onDelete(id){
     deleteTheWatchList(id)
     .then(res => {
@@ -105,21 +95,48 @@ class App extends Component {
           name: data
         })
       }
-      )
-      
-    })
-  }
+    )
+    
+  })
+}
 
-  onUpdate(watch, watchId){
-    updateWatchList(watch, watchId)
-    .then(res => fetchWatchlist())
-    .then(res => {
+onUpdate(watch, watchId){
+  updateWatchList(watch, watchId)
+  .then(res => fetchWatchlist())
+  .then(res => {
+    this.setState({
+      currentView: 'Watch lists',
+      name: res,
+    })
+  })
+}
+
+addStockToWatchList(stockId, watchId){
+  addToWatchList(stockId, watchId)
+  .then(res => {
+    fetchWatchlist()
+  .then(res => {
+    this.setState({
+      currentView: 'Watch lists',
+      list: res.list,
+    })
+  })
+  })
+}
+
+
+createWatchList(category) {
+  saveName(category)
+    .then(data => {
+      fetchWatchlist()
+      .then(res => {
       this.setState({
         currentView: 'Watch lists',
-        name: res,
+        name: res
       })
+      });
     })
-  }
+}
 
   determineWhichToRender() {
     const { currentView } = this.state;
@@ -147,6 +164,7 @@ class App extends Component {
           handleSelectionChange={this.handleSelectionChange}
           handleSelectionSubmit={this.handleSelectionSubmit}
           value={this.state.value}
+          addToWatchList={this.addStockToWatchList}
       />
 
       case 'Edit Form':

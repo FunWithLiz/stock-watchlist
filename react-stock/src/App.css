@@ -9,16 +9,10 @@
   height: 80px;
 }
 
-/* 
-.header {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #222;
-  height: 30px;
-  padding: 20px;
-  color: white;
-} */
-
+.container-nav{
+ padding-left: 100px;
+ padding-right: 100px;
+}
 
 
 .App-title {
@@ -32,6 +26,7 @@
 .allStocks{
   display: flex;
   flex-flow: row wrap;
+  padding: 50px 300px;
 }
 
 .container{
@@ -45,3 +40,31 @@
   to { transform: rotate(360deg); }
 }
 
+
+.nav {
+display: inline-block
+}
+
+.wikiIndex{
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 200px;
+  max-width: 400px;
+}
+
+.stockTitle{
+  font-size: 40px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.watchlistTitle{
+  font-size: 40px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.watchlistParagraph{
+  text-align: center;
+  margin: 50px 100px;
+}

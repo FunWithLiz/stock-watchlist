@@ -3,6 +3,8 @@ import React from 'react';
 function AllStocks(props) {
     const obj = props.stocks.stock
     return (
+        <div>
+        <h2 className="stockTitle">List of all Stocks</h2>
         <div className="allStocks">
             {obj.map((stock) => (
                 <div key={stock.id}>
@@ -20,7 +22,8 @@ function AllStocks(props) {
                     </p>
                 </div>
             ))
-            }
+        }
+        </div>
         </div>
 
     )
