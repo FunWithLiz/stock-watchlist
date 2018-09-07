@@ -7,8 +7,12 @@ import AllWatchlist from './components/AllWatchList'
 import {
   getAllStocks,
   saveName,
-  fetchWatchlist
+  fetchWatchlist,
+  fetchStockList,
+  deleteTheWatchList,
+  updateWatchList
 } from './services/api'
+import EditForm from './components/EditForm';
 
 
 
@@ -23,10 +27,16 @@ class App extends Component {
       name: [],
       stocks: null,
       flag: false,
-
+      list: '',
+      idToEdit: '',
     }
     this.determineWhichToRender = this.determineWhichToRender.bind(this);
     this.createWatchList = this.createWatchList.bind(this);
+    this.callingFetchStockList = this.callingFetchStockList.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+    this.setIdToEdit = this.setIdToEdit.bind(this);
+
   }
 
 
@@ -49,7 +59,14 @@ class App extends Component {
     })
   }
 
-
+  callingFetchStockList(id){
+    fetchStockList(id)
+    .then(res => {
+      this.setState({
+        list: res,
+      })
+    })
+  }
 
 
 
@@ -66,28 +83,70 @@ class App extends Component {
       })
   }
 
+
+  setIdToEdit(id){
+    this.setState({
+      currentView: 'Edit Form',
+      idToEdit: id,
+    })
+  }
+
+  onDelete(id){
+    deleteTheWatchList(id)
+    .then(res => {
+      fetchWatchlist()
+      .then(data => {
+        this.setState({
+          currentView: 'Watch lists',
+          name: data
+        })
+      }
+      )
+      
+    })
+  }
+
+  onUpdate(watch, watchId){
+    updateWatchList(watch, watchId)
+    .then(res => fetchWatchlist())
+    .then(res => {
+      this.setState({
+        currentView: 'Watch lists',
+        name: res,
+      })
+    })
+  }
+
   determineWhichToRender() {
     const { currentView } = this.state;
-    console.log("RUNNING");
     switch (currentView) {
       case 'Wiki Index':
         return (
           <AllStocks
             stocks={this.state.stocks}
           />)
-        break;
 
       case 'Create WatchList':
         return <CreateWatchList
           onSubmit={this.createWatchList}
           stocks={this.state.stocks} />;
-        break;
 
       case 'Watch lists':
       return <AllWatchlist
           name={this.state.name}
+          list={this.state.list}
+          callingFetchStockList={this.callingFetchStockList}
+          deleteTheWatchList={this.onDelete}
+          updateWatchList={this.onUpdate}
+          setIdToEdit={this.setIdToEdit}
       />
-      break;
+
+      case 'Edit Form':
+      return <EditForm 
+          idToEdit={this.state.idToEdit}
+          onUpdate={this.onUpdate}
+          name={this.state.name}
+          />
 
 
     }
@@ -98,6 +157,8 @@ class App extends Component {
       currentView: link
     });
   }
+
+
 
 
   render() {

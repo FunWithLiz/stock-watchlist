@@ -24,8 +24,40 @@ function fetchWatchlist(){
     .then(res => res.json())
 }
 
+function fetchStockList(id){
+    return fetch(`${BASE_URL}/personal_watchlists/${id}`)
+    .then(res => res.json())
+}
+
+function deleteTheWatchList(id) {
+    const opts = {
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(`${BASE_URL}/personal_watchlists/${id}`, opts)
+    .then(res => res.json())
+}
+
+
+function updateWatchList(watch, watchId){
+    const opts = {
+        method: 'PUT',
+        body: JSON.stringify(watch),
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    }
+    return fetch(`${BASE_URL}/personal_watchlists/${watchId}`, opts)
+    .then(res => res.json())
+}
+
 export {
     getAllStocks,
     saveName,
-    fetchWatchlist
+    fetchWatchlist,
+    fetchStockList,
+    deleteTheWatchList,
+    updateWatchList
 }

@@ -9,9 +9,9 @@ class PersonalWatchlistsController < ApplicationController
 
     # GET    /personal_watchlists/:id(.:format)
     def show
-        @personal_watchlist = PersonalWatchlist.find(params[:id])
+        @personal_watchlist = PersonalWatchlist.find(params[:id]) 
         stock = @personal_watchlist.stocks
-        render json: { list: @personal_watchlist, stocks: stock,}
+        render json: { list: @personal_watchlist, stocks: stock }, include: :category_lists 
     end
 
     skip_before_action :verify_authenticity_token  
