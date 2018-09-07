@@ -3,8 +3,9 @@ import Restoflist from './Restoflist';
 import EditForm from './EditForm';
 
 function AllWatchList(props) {
+    const obj = props.stocks.stock
     return (
-        <div className="allStocks">
+        <div className="hero has-text-centered">
             {props.name.map(name => (
 
                 <div key={name.id}>
@@ -27,16 +28,36 @@ function AllWatchList(props) {
                         props.deleteTheWatchList(name.id)
                     }}>Delete the Watch List</button>
 
+                    <label>
+                    <select
+                    onChange={props.handleSelectionChange}
+                    value={props.value}
+                    >
+
+                    {obj.map((stock) =>(
+                        <option 
+                        key ={stock.id}
+                        value={stock.dataset_code}
+                        >
+                        {stock.dataset_code}
+                        </option>
+                    ))}
+                    </select>
+                    </label>
+                    <input 
+                    type="submit" 
+                    value="Add a stock to your watch list"
+                    onSubmit={props.handleSelectionSubmit} 
+                    />
+
                 </div>
             ))
             }
             {props.list ? <Restoflist list={props.list} /> : null}
-            {/* {props.idToEdit ? <EditForm 
-            idToEdit={props.idToEdit} 
-            updateWatchList={this.onUpdate}/> : null } */}
         </div>
 
     )
 }
 
 export default AllWatchList
+

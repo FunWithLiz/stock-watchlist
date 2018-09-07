@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'bulma/css/bulma.css';
 import AllStocks from './components/AllStocks'
 import CreateWatchList from './components/CreateWatchList'
 import Header from './components/Header'
@@ -29,6 +30,7 @@ class App extends Component {
       flag: false,
       list: '',
       idToEdit: '',
+      value: '',
     }
     this.determineWhichToRender = this.determineWhichToRender.bind(this);
     this.createWatchList = this.createWatchList.bind(this);
@@ -36,6 +38,8 @@ class App extends Component {
     this.onDelete = this.onDelete.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
     this.setIdToEdit = this.setIdToEdit.bind(this);
+    this.handleSelectionChange = this.handleSelectionChange.bind(this);
+    this.handleSelectionSubmit = this.handleSelectionSubmit.bind(this);
 
   }
 
@@ -139,6 +143,10 @@ class App extends Component {
           deleteTheWatchList={this.onDelete}
           updateWatchList={this.onUpdate}
           setIdToEdit={this.setIdToEdit}
+          stocks={this.state.stocks}
+          handleSelectionChange={this.handleSelectionChange}
+          handleSelectionSubmit={this.handleSelectionSubmit}
+          value={this.state.value}
       />
 
       case 'Edit Form':
@@ -158,8 +166,13 @@ class App extends Component {
     });
   }
 
+  handleSelectionChange(e){
+    this.setState({value: e.target.value});
+  }
 
-
+  handleSelectionSubmit(e){
+    e.preventDefault();
+  }
 
   render() {
     const links = [
@@ -169,16 +182,12 @@ class App extends Component {
     ]
     if (this.state.flag) {
       return (
-        <div className="bg">
-          <div className="flex">
-          <div className="appSpace"></div>
-          <h1 className="appH1"> Stock Watch</h1>
+        <div>
             <Header
               onClick={this.handleLinkClick.bind(this)}
               links={links} />
 
             {this.determineWhichToRender()}
-          </div>
         </div>
       );
     } else {

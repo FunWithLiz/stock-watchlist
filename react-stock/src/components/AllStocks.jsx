@@ -2,7 +2,6 @@ import React from 'react';
 
 function AllStocks(props) {
     const obj = props.stocks.stock
-    console.log(obj);
     return (
         <div className="allStocks">
             {obj.map((stock) => (

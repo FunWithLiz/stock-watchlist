@@ -24,7 +24,7 @@ class EditForm extends Component {
 
     render() {
         return(
-        <div className="container">
+        <div className="hero has-text-centered">
             <h1>Edit Watch List</h1>
             <form onSubmit={this.handleSubmit} >
                 <label> New Name of Watch List:</label>
