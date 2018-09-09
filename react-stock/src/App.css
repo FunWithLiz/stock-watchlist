@@ -81,3 +81,18 @@ display: inline-block
   width: 600px;
   height: 400px;
 }
+
+
+
+
+.custom-select {
+  position: relative;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  width: 200px;
+  height: 30px;
+  top: -40px;
+
+}
+
+

@@ -14,7 +14,9 @@ function AllWatchList(props) {
         </h2>
         
         <div className="container has-text-centered">
+            <div className="dropdown is-active">
             <select
+                className="custom-select dropdown-trigger" 
                 onChange={props.handleSelectionChange}
                 value={props.value}
             >
@@ -28,7 +30,9 @@ function AllWatchList(props) {
                     </option>
                 ))}
             </select>
+            </div>    
 
+            <div className="dropdown is-active">
             {props.name.map(name => (
 
                 <div key={name.id}>
@@ -59,10 +63,11 @@ function AllWatchList(props) {
                         value="Add a stock to your watch list"
                         onClick={() => props.addToWatchList(props.value, props.list.list.id)}
                     >Add stock to the Watch List</button>
-
+                    
                 </div>
             ))
             }
+            </div>
             {props.list ? <Restoflist list={props.list} /> : null}
         </div>
         </div>
