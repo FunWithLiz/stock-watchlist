@@ -4,6 +4,7 @@ import './App.css';
 import AllStocks from './components/AllStocks'
 import CreateWatchList from './components/CreateWatchList'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import AllWatchlist from './components/AllWatchList'
 import {
   getAllStocks,
@@ -58,85 +59,85 @@ class App extends Component {
 
 
     fetchWatchlist()
-    .then(data => {
-      this.setState({
-        name: data,
+      .then(data => {
+        this.setState({
+          name: data,
+        })
       })
-    })
   }
 
-  callingFetchStockList(id){
+  callingFetchStockList(id) {
     fetchStockList(id)
-    .then(res => {
-      this.setState({
-        list: res,
+      .then(res => {
+        this.setState({
+          list: res,
+        })
       })
-    })
   }
 
 
 
-  
-  
-  setIdToEdit(id){
+
+
+  setIdToEdit(id) {
     this.setState({
       currentView: 'Edit Form',
       idToEdit: id,
     })
   }
-  
-  onDelete(id){
+
+  onDelete(id) {
     deleteTheWatchList(id)
-    .then(res => {
-      fetchWatchlist()
-      .then(data => {
+      .then(res => {
+        fetchWatchlist()
+          .then(data => {
+            this.setState({
+              currentView: 'Watch lists',
+              name: data
+            })
+          }
+          )
+
+      })
+  }
+
+  onUpdate(watch, watchId) {
+    updateWatchList(watch, watchId)
+      .then(res => fetchWatchlist())
+      .then(res => {
         this.setState({
           currentView: 'Watch lists',
-          name: data
+          name: res,
         })
-      }
-    )
-    
-  })
-}
-
-onUpdate(watch, watchId){
-  updateWatchList(watch, watchId)
-  .then(res => fetchWatchlist())
-  .then(res => {
-    this.setState({
-      currentView: 'Watch lists',
-      name: res,
-    })
-  })
-}
-
-addStockToWatchList(stockId, watchId){
-  addToWatchList(stockId, watchId)
-  .then(res => {
-    fetchWatchlist()
-  .then(res => {
-    this.setState({
-      currentView: 'Watch lists',
-      list: res.list,
-    })
-  })
-  })
-}
-
-
-createWatchList(category) {
-  saveName(category)
-    .then(data => {
-      fetchWatchlist()
-      .then(res => {
-      this.setState({
-        currentView: 'Watch lists',
-        name: res
       })
-      });
-    })
-}
+  }
+
+  addStockToWatchList(stockId, watchId) {
+    addToWatchList(stockId, watchId)
+      .then(res => {
+        fetchWatchlist()
+          .then(res => {
+            this.setState({
+              currentView: 'Watch lists',
+              list: res.list,
+            })
+          })
+      })
+  }
+
+
+  createWatchList(category) {
+    saveName(category)
+      .then(data => {
+        fetchWatchlist()
+          .then(res => {
+            this.setState({
+              currentView: 'Watch lists',
+              name: res
+            })
+          });
+      })
+  }
 
   determineWhichToRender() {
     const { currentView } = this.state;
@@ -153,7 +154,7 @@ createWatchList(category) {
           stocks={this.state.stocks} />;
 
       case 'Watch lists':
-      return <AllWatchlist
+        return <AllWatchlist
           name={this.state.name}
           list={this.state.list}
           callingFetchStockList={this.callingFetchStockList}
@@ -165,14 +166,14 @@ createWatchList(category) {
           handleSelectionSubmit={this.handleSelectionSubmit}
           value={this.state.value}
           addToWatchList={this.addStockToWatchList}
-      />
+        />
 
       case 'Edit Form':
-      return <EditForm 
+        return <EditForm
           idToEdit={this.state.idToEdit}
           onUpdate={this.onUpdate}
           name={this.state.name}
-          />
+        />
 
 
     }
@@ -184,11 +185,11 @@ createWatchList(category) {
     });
   }
 
-  handleSelectionChange(e){
-    this.setState({value: e.target.value});
+  handleSelectionChange(e) {
+    this.setState({ value: e.target.value });
   }
 
-  handleSelectionSubmit(e){
+  handleSelectionSubmit(e) {
     e.preventDefault();
   }
 
@@ -201,11 +202,13 @@ createWatchList(category) {
     if (this.state.flag) {
       return (
         <div>
-            <Header
-              onClick={this.handleLinkClick.bind(this)}
-              links={links} />
+          <Header
+            onClick={this.handleLinkClick.bind(this)}
+            links={links} />
+          {this.determineWhichToRender()}
 
-            {this.determineWhichToRender()}
+          <Footer />
+          
         </div>
       );
     } else {

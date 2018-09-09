@@ -27,10 +27,13 @@ class CreateWatchList extends Component {
 render(){
     return (
         <div className="container">
+            <div className="createwatchlistTitle">
             <h1>Create a New Watch List</h1>
+            </div>
             <form onSubmit = {this.handleSubmit} >
-                <label> Name of Watch List:</label>
+                <label className="labelspace"> Name of Watch List:</label>
                 <input
+                    className="labelspace"
                     type='text'
                     name='name_list'
                     value={this.state.name}

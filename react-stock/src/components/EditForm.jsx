@@ -24,11 +24,12 @@ class EditForm extends Component {
 
     render() {
         return(
-        <div className="hero has-text-centered">
-            <h1>Edit Watch List</h1>
+        <div className="container has-text-centered">
+            <h1 className="editwatchlistTitle">Edit Watch List</h1>
             <form onSubmit={this.handleSubmit} >
-                <label> New Name of Watch List:</label>
+                <label className="labelspace"> New Name of Watch List:</label>
                 <input
+                    className="labelspace"
                     type='text'
                     name='name_list'
                     value={this.state.name}
