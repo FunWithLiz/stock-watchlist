@@ -68,3 +68,16 @@ display: inline-block
   text-align: center;
   margin: 50px 100px;
 }
+
+.stockspace {
+  margin-right: 75px;
+}
+
+.hover_img { position:relative; }
+.hover_img span { position:absolute; display:none; z-index:99; }
+.hover_img :hover span { display:block; }
+
+.stockimg{
+  width: 600px;
+  height: 400px;
+}
