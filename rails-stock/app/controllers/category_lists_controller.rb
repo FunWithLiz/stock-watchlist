@@ -32,6 +32,9 @@ class CategoryListsController < ApplicationController
         render json: { message: "You've just deleted #{params[:id]}"}
     end
 
+
+    # WAS GONNA USE THIS FOR QUANDL API
+    
     # def add_to_personal_list
     #     api = Quandl.new
     #     api_response = api.request_data(category_params[:ticker_name])

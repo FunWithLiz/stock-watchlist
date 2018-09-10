@@ -34,3 +34,14 @@ Sept 6-7 - Finish the rendering components and fix bugs
 Sept ~ 9 - Continue to fix bugs and stylize page, (if have time, use AUTH?).
 
 ## Code snippet
+
+# ADDING STOCK DATA INTO THE PERSONAL WATCH LIST
+
+    def create 
+        stock = Stock.find(params["stockId"])
+        personal_watchlist = PersonalWatchlist.find(params["personal_watchlist_id"])
+
+        personal_watchlist.stocks << stock
+        render json: { personal_watchlist: personal_watchlist.stocks }
+
+    end

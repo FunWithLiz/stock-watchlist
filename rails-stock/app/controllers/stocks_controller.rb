@@ -7,6 +7,7 @@ class StocksController < ApplicationController
 
     skip_before_action :verify_authenticity_token  
 
+# ADDING STOCK DATA INTO THE PERSONAL WATCH LIST
 
     def create 
         stock = Stock.find(params["stockId"])
