@@ -7,7 +7,7 @@ function AllStocks(props) {
             <h2 className="stockTitle">List of all Stocks</h2>
             <div className="allStocks">
                 {obj.map((stock) => (
-                    <div className="hover_img" 
+                    <div className="hover_img" // able to hover over text to get an image to show
                     key={stock.id}>
                         <h4>
                             <b>

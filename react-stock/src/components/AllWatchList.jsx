@@ -1,6 +1,6 @@
 import React from 'react';
 import Restoflist from './Restoflist';
-import EditForm from './EditForm';
+
 
 function AllWatchList(props) {
     const obj = props.stocks.stock
@@ -13,6 +13,7 @@ function AllWatchList(props) {
             If you don't want the list any more, simply click on the "Delete the Watch List" and watch it disappear!
         </h2>
         
+        {/* selection downdrop starts here */}
         <div className="container has-text-centered">
             <div className="dropdown is-active">
             <select
@@ -46,7 +47,6 @@ function AllWatchList(props) {
                         e.preventDefault();
                         props.setIdToEdit(name.id);
 
-                        // props.updateWatchList(name.id);
                     }}>Update the Watch List name</button>
 
 
@@ -68,6 +68,7 @@ function AllWatchList(props) {
             ))
             }
             </div>
+            {/* if clicked on a personal watch list, show the list of stocks for that */}
             {props.list ? <Restoflist list={props.list} /> : null}
         </div>
         </div>

@@ -17,11 +17,6 @@ import {
 } from './services/api'
 import EditForm from './components/EditForm';
 
-
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -74,10 +69,6 @@ class App extends Component {
         })
       })
   }
-
-
-
-
 
   setIdToEdit(id) {
     this.setState({
@@ -179,11 +170,15 @@ class App extends Component {
     }
   }
 
+  // handles the switch-case render view
+
   handleLinkClick(link) {
     this.setState({
       currentView: link
     });
   }
+
+  // handles the change for when selecting one of the stocks in the dropdown
 
   handleSelectionChange(e) {
     this.setState({ value: e.target.value });
@@ -199,6 +194,10 @@ class App extends Component {
       'Create WatchList',
       'Watch lists'
     ]
+
+    // if/else statement for better user experience
+    //so users are able to see loading data if code breaks
+    
     if (this.state.flag) {
       return (
         <div>
