@@ -1,8 +1,5 @@
 # stock-watchlist
 
-## DEPLOYED LINK
-http://calculating-pizzas.surge.sh/
-
 ## Summary
 For users who wants to keep track of their stocks.
 
