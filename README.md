@@ -12,6 +12,7 @@ For users who wants to keep track of their stocks.
 ## Tech used
 - Rails for back-end 
 - React for front-end
+- Bulma for CSS styling
 - Api link: https://docs.quandl.com/docs/in-depth-usage#section-get-time-series-data-and-metadata
 
 ## ERD
